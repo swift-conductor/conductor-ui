@@ -22,11 +22,19 @@ The default setup expects that the Conductor Server API will be available at `lo
 
 ### Hosting for Production
 
-There is no need to "build" the project unless you require compiled assets to host on a production web server. In this case, the project can be built with the command `yarn build`. The assets will be produced to `/build`.
+There is no need to "build" the project unless you require compiled assets to host on a production web server. In this case, the project can be built with the command `npm run build`. The assets will be produced to `/build`.
 
-Your hosting environment should make the Conductor Server API available on the same domain. This avoids complexities regarding cross-origin data fetching. The default path prefix is `/api`. If a different prefix is desired, `plugins/fetch.js` can be modified to customize the API fetch behavior.
+Your hosting environment should make the Conductor Server API available on the same domain. This avoids complexities regarding cross-origin data fetching. The default path prefix is `/api`. If a different prefix is desired, `src/components/context/DefaultAppContextProvider.jsx` can be modified to customize the API fetch behavior.
 
 See `docker/serverAndUI` for an `nginx` based example.
+
+#### Different host path
+
+The static UI would work when rendered from any host route.
+The default is '/'. You can customize this by setting the 'homepage' field in package.json
+Refer
+- https://create-react-app.dev/docs/deployment/#building-for-relative-paths
+
 
 ### Customization Hooks
 
