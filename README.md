@@ -4,17 +4,11 @@
 
 ## Conductor UI
 
-The UI is a standard `create-react-app` React Single Page Application (SPA). To get started, with Node 14 and `yarn` installed, first run `yarn install` from within the `/ui` directory to retrieve package dependencies.
-
-For more information regarding CRA configuration and usage, see the official [doc site](https://create-react-app.dev/).
-
-> ### For upgrading users
->
-> The UI is designed to operate directly with the Conductor Server API. A Node `express` backend is no longer required.
+The UI is a standard `create-react-app` React Single Page Application (SPA). To get started, with Node 14 and `npm` installed, first run `npm install` to retrieve package dependencies. For more information regarding the `create-react-app` configuration and usage, see the official [doc site](https://create-react-app.dev/).
 
 ### Development Server
 
-To run the UI on the bundled development server, run `yarn run start`. Navigate your browser to `http://localhost:5000`.
+To run the UI on the bundled development server, run `npm run start`. Navigate your browser to `http://localhost:5000`.
 
 #### Reverse Proxy configuration
 
@@ -26,31 +20,17 @@ There is no need to "build" the project unless you require compiled assets to ho
 
 Your hosting environment should make the Conductor Server API available on the same domain. This avoids complexities regarding cross-origin data fetching. The default path prefix is `/api`. If a different prefix is desired, `src/components/context/DefaultAppContextProvider.jsx` can be modified to customize the API fetch behavior.
 
-See `docker/serverAndUI` for an `nginx` based example.
-
 #### Different host path
 
-The static UI would work when rendered from any host route.
-The default is '/'. You can customize this by setting the 'homepage' field in package.json
-Refer
-- https://create-react-app.dev/docs/deployment/#building-for-relative-paths
-
-
-### Customization Hooks
-
-For ease of maintenance, a number of touch points for customization have been removed to `/plugins`.
-
-- `AppBarModules.jsx`
-- `AppLogo.jsx`
-- `env.js`
-- `fetch.js`
+The static UI would work when rendered from any host route. The default is `/`. You can customize this by setting the `homepage` field in `package.json`
+Refer https://create-react-app.dev/docs/deployment/#building-for-relative-paths
 
 ### Authentication
 
 We recommend that authentication & authorization be de-coupled from the UI and handled at the web server/access gateway.
 
-#### Examples (WIP)
+#### Possible Solutions Include
 
-- Basic Auth (username/password) with `nginx`
+- Basic Auth (username / password) with `nginx`
 - Commercial IAM Vendor
 - Node `express` server with `passport.js`
