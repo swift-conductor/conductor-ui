@@ -14,7 +14,8 @@ export default function DefaultAppContextProvider({ ...props }) {
         fetchWithContext: function (path, fetchParams) {
           const newParams = { ...fetchParams };
 
-          const newPath = `/api/${path}`;
+          const wf_server = process.env.WF_SERVER || "http://localhost:8080";  
+          const newPath = `${wf_server}/api/${path}`;
           const cleanPath = newPath.replace(/([^:]\/)\/+/g, "$1"); // Cleanup duplicated slashes
 
           return fetch(cleanPath, newParams).then(handleError);

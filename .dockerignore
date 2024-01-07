@@ -1,0 +1,8 @@
+# General
+
+/node_modules
+/build
+
+/.github
+/.git
+/cypress

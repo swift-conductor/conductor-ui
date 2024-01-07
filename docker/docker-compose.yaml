@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  conductor-ui:
+    image: swift-conductor:ui
+    container_name: swift-conductor-ui
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      args:
+        WF_SERVER: http://localhost:8080
+    ports:
+      - 5000:5000
+    networks:
+      - internal
+
+networks:
+  internal:
