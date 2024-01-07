@@ -12,11 +12,12 @@ docker build \
 
 ## Run
 
+Make sure you have the Swift Conductor server running on http://localhost:8080.
+
 ```bash
 docker run --detach \
     --name swift-conductor-ui \
     --publish 5000:5000 \
-    --env "WF_SERVER=http://localhost:8080" \
     swift-conductor:ui 
 ```
 
@@ -27,15 +28,14 @@ Alternatively you can build run using `docker-compose`
 ### Build
 
 ```bash
-cd docker
-docker-compose build
+docker-compose --file docker/docker-compose.yaml build
 ```
 
 ### Run
 
-```bash
-cd docker
-docker-compose up --detach 
-```
+Make sure you have the Swift Conductor server running on http://localhost:8080.
 
-            
+```bash
+docker-compose --file docker/docker-compose.yaml up --detach
+```
+           
