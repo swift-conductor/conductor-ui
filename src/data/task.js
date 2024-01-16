@@ -57,7 +57,7 @@ export function useTaskSearch({ searchReady, ...searchObj }) {
 export function usePollData(taskName) {
   const { fetchWithContext, ready, stack } = useAppContext();
 
-  const pollDataPath = `/task/queue/polldata?taskType=${taskName}`;
+  const pollDataPath = `/task/queue/poll-data?taskType=${taskName}`;
 
   return useQuery([stack, pollDataPath], () => fetchWithContext(pollDataPath), {
     enabled: ready && !_.isEmpty(taskName),
