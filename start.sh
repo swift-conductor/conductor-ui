@@ -7,4 +7,4 @@ source ~/.nvm/nvm.sh
 nvm install --lts=Iron
 nvm use --silent --lts=Iron
 
-npm run start
+npm start

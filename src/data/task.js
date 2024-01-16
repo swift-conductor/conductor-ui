@@ -11,7 +11,7 @@ const STALE_TIME_SEARCH = 60000; // 1 min
 export function useTask(taskName, defaultTask) {
   let path;
   if (taskName) {
-    path = `/metadata/taskdefs/${taskName}`;
+    path = `/metadata/taskdef/${taskName}`;
   }
   return useFetch(["taskDef", taskName], path, {}, defaultTask);
 }
@@ -19,7 +19,7 @@ export function useTask(taskName, defaultTask) {
 export function useTaskSearch({ searchReady, ...searchObj }) {
   const { fetchWithContext, ready, stack } = useAppContext();
 
-  const pathRoot = "/tasks/search?";
+  const pathRoot = "/task/search?";
   const { rowsPerPage, page, sort, freeText, query } = searchObj;
 
   const isEmptySearch = _.isEmpty(query) && freeText === "*";
@@ -57,7 +57,7 @@ export function useTaskSearch({ searchReady, ...searchObj }) {
 export function usePollData(taskName) {
   const { fetchWithContext, ready, stack } = useAppContext();
 
-  const pollDataPath = `/tasks/queue/polldata?taskType=${taskName}`;
+  const pollDataPath = `/task/queue/polldata?taskType=${taskName}`;
 
   return useQuery([stack, pollDataPath], () => fetchWithContext(pollDataPath), {
     enabled: ready && !_.isEmpty(taskName),
@@ -67,7 +67,7 @@ export function usePollData(taskName) {
 export function useQueueSize(taskName, domain) {
   const { fetchWithContext, ready, stack } = useAppContext();
 
-  const path = new Path("/tasks/queue/size");
+  const path = new Path("/task/queue/size");
   path.search.append("taskType", taskName);
 
   if (!_.isUndefined(domain)) {
@@ -87,7 +87,7 @@ export function useQueueSizes(taskName, domains) {
   return useQueries(
     domains
       ? domains.map((domain) => {
-          const path = new Path("/tasks/queue/size");
+          const path = new Path("/task/queue/size");
           path.search.append("taskType", taskName);
 
           if (!_.isUndefined(domain)) {
@@ -119,11 +119,11 @@ export function useTaskNames() {
 }
 
 export function useTaskDefs() {
-  return useFetch(["taskDefs"], "/metadata/taskdefs");
+  return useFetch(["taskDefs"], "/metadata/taskdef");
 }
 
 export function useSaveTask(callbacks) {
-  const path = "/metadata/taskdefs";
+  const path = "/metadata/taskdef";
   const { fetchWithContext } = useAppContext();
 
   return useMutation(({ body, isNew }) => {

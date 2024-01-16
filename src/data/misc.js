@@ -5,5 +5,5 @@ export const useEventHandlers = () => {
 };
 
 export const useLogs = ({ taskId }) => {
-  return useFetch(["taskLog", taskId], `/tasks/${taskId}/log`);
+  return useFetch(["taskLog", taskId], `/task/${taskId}/log`);
 };

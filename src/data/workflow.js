@@ -74,7 +74,7 @@ export function useWorkflowDef(
   let path;
   const key = ["workflowDef", workflowName];
   if (workflowName) {
-    path = `/metadata/workflow/${workflowName}`;
+    path = `/metadata/workflowdef/${workflowName}`;
     if (version) {
       path += `?version=${version}`;
       key.push(version);
@@ -84,7 +84,7 @@ export function useWorkflowDef(
 }
 
 export function useWorkflowDefs() {
-  return useFetch(["workflowDefs"], "/metadata/workflow", {
+  return useFetch(["workflowDefs"], "/metadata/workflowdef", {
     staleTime: STALE_TIME_WORKFLOW_DEFS,
   });
 }
@@ -92,7 +92,7 @@ export function useWorkflowDefs() {
 export function useWorkflowNamesAndVersions() {
   return useFetch(
     ["workflowNamesAndVersions"],
-    "/metadata/workflow/names-and-versions",
+    "/metadata/workflowdef/names-and-versions",
     {
       staleTime: STALE_TIME_WORKFLOW_DEFS,
     }
@@ -112,7 +112,7 @@ export function usePaginatedWorkflowDefs(from = 0, to = 15, filter = "") {
   const results = useQueries(
     paginatedNames.map((name) => ({
       queryKey: [stack, "workflowDef", name],
-      queryFn: () => fetchWithContext(`/metadata/workflow/${name}`),
+      queryFn: () => fetchWithContext(`/metadata/workflowdef/${name}`),
       retry: 5,
     }))
   );
@@ -164,7 +164,7 @@ export function useLatestWorkflowDefs() {
 }
 
 export function useSaveWorkflow(callbacks) {
-  const path = "/metadata/workflow";
+  const path = "/metadata/workflowdef";
   const { fetchWithContext } = useAppContext();
 
   return useMutation(

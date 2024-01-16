@@ -1,12 +1,12 @@
 describe("Landing Page", () => {
   beforeEach(() => {
     cy.intercept("/api/workflow/search?**", { fixture: "workflowSearch.json" });
-    cy.intercept("/api/tasks/search?**", { fixture: "taskSearch.json" });
-    cy.intercept("/api/metadata/workflow", {
+    cy.intercept("/api/task/search?**", { fixture: "taskSearch.json" });
+    cy.intercept("/api/metadata/workflowdef", {
       fixture: "metadataWorkflow.json",
     });
-    cy.intercept("/api/metadata/taskdefs", { fixture: "metadataTasks.json" });
-    cy.intercept("/api/metadata/workflow/names-and-versions", {
+    cy.intercept("/api/metadata/taskdef", { fixture: "metadataTasks.json" });
+    cy.intercept("/api/metadata/workflowdef/names-and-versions", {
       fixture: "namesAndVersions.json",
     });
   });
